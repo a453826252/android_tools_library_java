@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.RequiresPermission;
 
-
+/**
+ * @author zhao.botao
+ * 2018.12.15
+ * android 6.0及以上动态权限获取
+ */
 public class Permissions {
 
     private static Permissions permissionsInstance;

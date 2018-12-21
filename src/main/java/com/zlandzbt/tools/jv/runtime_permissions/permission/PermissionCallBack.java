@@ -1,5 +1,10 @@
 package com.zlandzbt.tools.jv.runtime_permissions.permission;
 
+/**
+ * @author zhao.botao
+ * 2018.12.15
+ * 动态权限获取回调接口
+ */
 public interface PermissionCallBack {
     class ErrorCode {
         /**
@@ -34,7 +39,7 @@ public interface PermissionCallBack {
      * @param permission         申请的权限
      * @param code               请求码
      */
-    public void permissonReject(boolean shouldShowRational, String permission, int code);
+    public void permissionReject(boolean shouldShowRational, String permission, int code);
 
     /**
      * 全部过程执行完毕

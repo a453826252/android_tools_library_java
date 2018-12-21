@@ -10,8 +10,12 @@ import android.support.annotation.NonNull;
 import com.zlandzbt.tools.jv.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+/**
+ * @author zhao.botao
+ * 2018.12.15
+ * 透明主题，协助动态权限获取
+ */
 public class PermissionActivity extends Activity {
 
     private static PermissionCallBack mCallBack;
@@ -21,6 +25,7 @@ public class PermissionActivity extends Activity {
     private static int mRequestCode;
 
     private static boolean mRepeat;
+
     public static void request(String[] permissions,PermissionCallBack callBack,int requestCode,boolean repeat){
         mCallBack = callBack;
         mPermissions = permissions;
@@ -58,7 +63,7 @@ public class PermissionActivity extends Activity {
                     permissionDeny.add(permissions[i]);
                     continue;
                 }
-                mCallBack.permissonReject(shouldShow,permissions[i],requestCode);
+                mCallBack.permissionReject(shouldShow,permissions[i],requestCode);
                 granted = false;
             }else{
                 mCallBack.permissionGranted(permissions[i],requestCode);
