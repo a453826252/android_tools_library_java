@@ -2,7 +2,8 @@ package com.zlandzbt.tools.jv.runtime_permissions.permission;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.annotation.RequiresPermission;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 
 /**
  * @author zhao.botao
@@ -39,7 +40,7 @@ public class Permissions {
         return Permissions.permissionsInstance;
     }
 
-    public Permissions repeat(boolean repeat){
+    public Permissions repeat(boolean repeat) {
         mIsRepeat = repeat;
         return Permissions.permissionsInstance;
     }
@@ -50,10 +51,16 @@ public class Permissions {
     }
 
     public void request() {
-        PermissionActivity.request(mPermissions, mCallBack, mRequestCode,mIsRepeat);
+        PermissionActivity.request(mPermissions, mCallBack, mRequestCode, mIsRepeat);
         mActivity.startActivity(new Intent(mActivity, PermissionActivity.class));
         //释放资源，防止内存泄露
         permissionsInstance = null;
+    }
+
+    public boolean checkPermission(String permission) {
+        return ContextCompat.checkSelfPermission(mActivity,
+                permission) == PackageManager.PERMISSION_GRANTED;
+
     }
 }
 
