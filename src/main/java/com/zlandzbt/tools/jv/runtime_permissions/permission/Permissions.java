@@ -1,7 +1,9 @@
 package com.zlandzbt.tools.jv.runtime_permissions.permission;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.v4.content.ContextCompat;
 
@@ -61,6 +63,19 @@ public class Permissions {
         return ContextCompat.checkSelfPermission(mActivity,
                 permission) == PackageManager.PERMISSION_GRANTED;
 
+    }
+
+    public static String[] getAllUsesPermissionsNameInManifest(Context context) {
+        String packageName = context.getPackageName();
+        String permissions[] = null;
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_PERMISSIONS);
+            permissions = packageInfo.requestedPermissions;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return permissions;
     }
 }
 
